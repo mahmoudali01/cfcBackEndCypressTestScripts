@@ -36,13 +36,19 @@ Cypress.Commands.add("login", (baseUrl) => {
 Cypress.Commands.add("openManageProject", () => {
     cy.get('.sidebar-toggle').click()
     cy.get('a.ng-tns-c111-0 > .menu-title').click()
-    cy.get('.menu-item.ng-tns-c111-2 > .ng-star-inserted > .menu-title').click()
+    cy.get('.menu-item.ng-tns-c111-2').click()
     cy.get('.sidebar-toggle').click()
 })
 Cypress.Commands.add("openManageBuildings", () => {
     cy.get('.sidebar-toggle').click()
     cy.get('a.ng-tns-c111-0 > .menu-title').click()
-    cy.get('.menu-item.ng-tns-c111-3 > .ng-star-inserted').click()
+    cy.get('.menu-item.ng-tns-c111-3').click()
+    cy.get('.sidebar-toggle').click()
+})
+Cypress.Commands.add("openManageUnits", () => {
+    cy.get('.sidebar-toggle').click()
+    cy.get('a.ng-tns-c111-0 > .menu-title').click()
+    cy.get('.menu-item.ng-tns-c111-10').click()
     cy.get('.sidebar-toggle').click()
 })
 Cypress.Commands.add("Search", () => {
