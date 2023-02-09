@@ -48,7 +48,13 @@ Cypress.Commands.add("openManageBuildings", () => {
 Cypress.Commands.add("openManageUnits", () => {
     cy.get('.sidebar-toggle').click()
     cy.get('a.ng-tns-c111-0 > .menu-title').click()
-    cy.get('.menu-item.ng-tns-c111-10').click()
+    cy.get('.menu-item.ng-tns-c111-4').click()
+    cy.get('.sidebar-toggle').click()
+})
+Cypress.Commands.add("openManageDepartments", () => {
+    cy.get('.sidebar-toggle').click()
+    cy.get('a.ng-tns-c111-0 > .menu-title').click()
+    cy.get('.menu-item.ng-tns-c111-6').click()
     cy.get('.sidebar-toggle').click()
 })
 Cypress.Commands.add("Search", () => {
@@ -66,6 +72,7 @@ Cypress.Commands.add("Edit", () => {
     cy.get('.btn-info').click()
     cy.wait(500)
 })
+
 Cypress.Commands.add("Delete", () => {
     cy.get('.btn-danger').click()
     cy.wait(500)
@@ -78,4 +85,16 @@ Cypress.Commands.add("Abort", () => {
 })
 Cypress.Commands.add("Toast", () => {
     cy.get('.message')
+})
+Cypress.Commands.add("Dialog", () => {
+    cy.get('mat-dialog-container[role="dialog"]')
+})
+Cypress.Commands.add("SubmitBTN", () => {
+    cy.get('button[type=submit]')
+})
+Cypress.Commands.add("AbortBTN", () => {
+    cy.get('button[class="btn btn-light"]')
+})
+Cypress.Commands.add("ConfirmDelete", () => {
+    cy.get('button[class="btn btn-danger mx-2"]').click()
 })
