@@ -133,7 +133,7 @@ describe('Manage Buildings Suite', () => {
                 it('Add already exist building', () => {
                     cy.Add()
                     // cy.get('#cdk-overlay-3')
-                    cy.get('mat-dialog-container[role="dialog"]')
+                    cy.Dialog()
                         // cy.get('mat-dialog-container[class="mat-dialog-container ng-tns-c264-29 ng-trigger ng-trigger-dialogContainer ng-star-inserted"]')
                         .within(() => {
                             cy.get('.ng-untouched.ng-star-inserted > .row > :nth-child(1)').within(() => {
@@ -257,7 +257,7 @@ describe('Manage Buildings Suite', () => {
                     cy.get('mat-dialog-container[role="dialog"]').should('not.exist')
                     cy.reload()
                 })
-                it('delete test project', () => {
+                it('delete test department', () => {
                     cy.Clear()
                     cy.get('.input-full-width').type('1')
                     cy.get('.form-control').select('Yes')

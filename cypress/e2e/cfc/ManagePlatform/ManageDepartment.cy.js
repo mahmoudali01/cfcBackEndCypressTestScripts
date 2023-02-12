@@ -26,28 +26,28 @@ describe('Manage Departments Suite', () => {
 
         })
         it('Grid Section Text Validation', () => {
-               // cy.get(':nth-child(1) > :nth-child(2) > .row').within(()=>{
-                    cy.get('.row > :nth-child(1) > .title').should('have.text', 'Departments')
-                    cy.get('.mx-2 > img').should('be.visible')
-                    cy.get('[title="Export To PDF"] > img').should('be.visible')
-             //   })
-              //  cy.get(':nth-child(2) > nb-card-body').contains(()=>{
-                    cy.get('.cdk-column-enName > .mat-sort-header-container > .mat-sort-header-button')
-                    .should('have.text', ' Department English Name ')
-                cy.get('.cdk-column-arName > .mat-sort-header-container > .mat-sort-header-button')
-                    .should('have.text', ' Department Arabic Name ')
-                cy.get('.cdk-column-departmentManager > .mat-sort-header-container > .mat-sort-header-button')
-                    .should('have.text', ' Department Manager ')
-                cy.get('.cdk-column-isActive > .mat-sort-header-container > .mat-sort-header-button')
-                    .should('have.text', ' Availability ')
-                //.contains('Availability')
-                cy.get('.mat-header-row > .cdk-column-operations').contains('Operations')
-                cy.get(':nth-child(1) > .d-flex > .btn-info').should('have.text', 'Edit')
-                cy.get(':nth-child(1) > .d-flex > .btn-danger').should('have.text', 'Delete')
-                cy.get('.mat-paginator-page-size-label').should('have.text', 'Items per page:')
-               // })
-                
-            
+            // cy.get(':nth-child(1) > :nth-child(2) > .row').within(()=>{
+            cy.get('.row > :nth-child(1) > .title').should('have.text', 'Departments')
+            cy.get('.mx-2 > img').should('be.visible')
+            cy.get('[title="Export To PDF"] > img').should('be.visible')
+            //   })
+            //  cy.get(':nth-child(2) > nb-card-body').contains(()=>{
+            cy.get('.cdk-column-enName > .mat-sort-header-container > .mat-sort-header-button')
+                .should('have.text', ' Department English Name ')
+            cy.get('.cdk-column-arName > .mat-sort-header-container > .mat-sort-header-button')
+                .should('have.text', ' Department Arabic Name ')
+            cy.get('.cdk-column-departmentManager > .mat-sort-header-container > .mat-sort-header-button')
+                .should('have.text', ' Department Manager ')
+            cy.get('.cdk-column-isActive > .mat-sort-header-container > .mat-sort-header-button')
+                .should('have.text', ' Availability ')
+            //.contains('Availability')
+            cy.get('.mat-header-row > .cdk-column-operations').contains('Operations')
+            cy.get(':nth-child(1) > .d-flex > .btn-info').should('have.text', 'Edit')
+            cy.get(':nth-child(1) > .d-flex > .btn-danger').should('have.text', 'Delete')
+            cy.get('.mat-paginator-page-size-label').should('have.text', 'Items per page:')
+            // })
+
+
 
         })
         it('Add Department Dialog Text Validation', () => {
@@ -67,7 +67,7 @@ describe('Manage Departments Suite', () => {
                 cy.SubmitBTN().should('have.text', 'Add')
                 cy.AbortBTN().should('have.text', 'Cancel')
                 cy.Abort()
-                cy.reload()                
+                cy.reload()
             })
         })
     })
@@ -83,21 +83,21 @@ describe('Manage Departments Suite', () => {
                 cy.get('tbody > :nth-child(1) > .cdk-column-enName').contains('CRM')
             })
             it('Filter By Department Arabic Name', () => {
-                cy.get(':nth-child(2) > nb-card-body').within(() => {
-                    cy.get(':nth-child(1) > .form-group > div > .input-full-width').type('علاقات العملاء')
+                cy.get(':nth-child(1) > nb-card-body').within(() => {
+                    cy.get(':nth-child(2) > .form-group > div > .input-full-width').type('علاقات العملاء')
                     cy.Search()
-                })
-                cy.get('tbody > :nth-child(1) > .cdk-column-arName').contains('علاقات العملاء')
+               })
+               cy.get('tbody > :nth-child(1) > .cdk-column-arName').contains('علاقات العملاء')
 
             })
             it('Filter By Department Manager', () => {
                 cy.get(':nth-child(1) > nb-card-body').within(() => {
-                    cy.get(':nth-child(3) > .form-group').within(()=>{
-                        cy.contains('Ahmed Saber').click()
+                    cy.get(':nth-child(3) > .form-group').within(() => {
+                        cy.contains('Ahmed Saber').click({force:true})
                     })
                     cy.Search()
-                })
-                cy.get('.mat-row > .cdk-column-departmentManager').contains('Ahmed Saber')
+               })
+               cy.get('tbody > :nth-child(1) > .cdk-column-departmentManager').contains('Ahmed Saber')
             })
 
         })
@@ -107,12 +107,12 @@ describe('Manage Departments Suite', () => {
                     cy.Add()
                 })
                 cy.Dialog().within(() => {
-                 cy.SubmitDialog()   
-                 cy.get(':nth-child(2) > :nth-child(2) > .invalid-feedback > .ng-star-inserted')
-                 .should('have.text','Department Arabic Name is required')
-                cy.get(':nth-child(1) > :nth-child(2) > .invalid-feedback > .ng-star-inserted')
-                .should('have.text','Department English Name is required')
-               })
+                    cy.SubmitDialog()
+                    cy.get(':nth-child(2) > :nth-child(2) > .invalid-feedback > .ng-star-inserted')
+                        .should('have.text', 'Department Arabic Name is required')
+                    cy.get(':nth-child(1) > :nth-child(2) > .invalid-feedback > .ng-star-inserted')
+                        .should('have.text', 'Department English Name is required')
+                })
                 cy.reload()
             })
             it('abort without adding', () => {
@@ -157,95 +157,109 @@ describe('Manage Departments Suite', () => {
 
 
         })
-        // describe('Edit Scenarios', () => {
-        //     it('cancel without editing', () => {
-        //         cy.get(':nth-child(1) > nb-card-body').within(() => {
-        //             cy.get(':nth-child(1) > .form-group > div > .input-full-width').type('Demo Department')
-        //             cy.Search()
-        //         })
+        describe('Edit Scenarios', () => {
+            it('cancel without editing', () => {
+                cy.get(':nth-child(1) > nb-card-body').within(() => {
+                    cy.get(':nth-child(1) > .form-group > div > .input-full-width').type('Demo Department')
+                    cy.Search()
+                })
 
-        //         cy.wait(500)
-        //         cy.Edit()
-        //         cy.Abort()
-        //         cy.wait(500)
-        //         cy.get('mat-dialog-container[role="dialog"]').should('not.exist')
-        //         cy.reload()
-        //     })
-        //     it('update without changing', () => {
-        //         cy.get(':nth-child(1) > nb-card-body').within(() => {
-        //             cy.get(':nth-child(1) > .form-group > div > .input-full-width').type('Demo Department')
-        //             cy.Search()
-        //         })
-        //         cy.wait(500)
-        //         cy.Edit()
-        //         cy.SubmitDialog()
-        //         cy.Toast().should('be.visible')
-        //         cy.Toast().should('have.text', 'Department Updated Successfully')
-        //         cy.reload()
-        //     })
-        //     it('update to already existing Department', () => {
-        //         cy.get(':nth-child(1) > nb-card-body').within(() => {
-        //             cy.get(':nth-child(1) > .form-group > div > .input-full-width').type('Demo Department')
-        //             cy.Search()
-        //         })
-        //         cy.wait(500)
-        //         cy.Edit()
-        //         cy.Dialog().within(() => {
-        //             cy.get('.row > :nth-child(1) > div > .form-control').clear()
-        //             cy.get('.row > :nth-child(1) > div > .form-control').type('CRM')
+                cy.wait(500)
+                cy.Edit()
+                cy.Abort()
+                cy.wait(500)
+                cy.get('mat-dialog-container[role="dialog"]').should('not.exist')
+                cy.reload()
+            })
+            //     it('update without changing', () => {
+            //         cy.get(':nth-child(1) > nb-card-body').within(() => {
+            //             cy.get(':nth-child(1) > .form-group > div > .input-full-width').type('Demo Department')
+            //             cy.Search()
+            //         })
+            //         cy.wait(500)
+            //         cy.Edit()
+            //         cy.SubmitDialog()
+            //         cy.Toast().should('be.visible')
+            //         cy.Toast().should('have.text', 'Department Updated Successfully')
+            //         cy.reload()
+            //     })
+            //     it('update to already existing Department', () => {
+            //         cy.get(':nth-child(1) > nb-card-body').within(() => {
+            //             cy.get(':nth-child(1) > .form-group > div > .input-full-width').type('Demo Department')
+            //             cy.Search()
+            //         })
+            //         cy.wait(500)
+            //         cy.Edit()
+            //         cy.Dialog().within(() => {
+            //             cy.get('.row > :nth-child(1) > div > .form-control').clear()
+            //             cy.get('.row > :nth-child(1) > div > .form-control').type('CRM')
 
-        //             cy.SubmitDialog()
-        //         })
-        //         cy.Toast().should('be.visible')
-        //         cy.Toast().should('have.text', 'Department name is already exists')
-        //         cy.reload()
-        //     })
-        //     it('update with correct values', () => {
-        //         cy.get(':nth-child(1) > nb-card-body').within(() => {
-        //             cy.get(':nth-child(1) > .form-group > div > .input-full-width').type('Demo Department')
-        //             cy.Search()
-        //         })
-        //         cy.wait(500)
-        //         cy.Edit()
-        //         cy.Dialog().within(() => {
-        //             cy.get('.row > :nth-child(1) > div > .form-control').clear()
-        //             cy.get('.row > :nth-child(1) > div > .form-control').type('Demo Department')
-        //             cy.SubmitDialog()
-        //         })
-        //         cy.Toast().should('be.visible')
-        //         cy.Toast().should('have.text', 'Department Updated Successfully')
-        //         cy.reload()
-        //     })
+            //             cy.SubmitDialog()
+            //         })
+            //         cy.Toast().should('be.visible')
+            //         cy.Toast().should('have.text', 'Department name is already exists')
+            //         cy.reload()
+            //     })
+            //     it('update with correct values', () => {
+            //         cy.get(':nth-child(1) > nb-card-body').within(() => {
+            //             cy.get(':nth-child(1) > .form-group > div > .input-full-width').type('Demo Department')
+            //             cy.Search()
+            //         })
+            //         cy.wait(500)
+            //         cy.Edit()
+            //         cy.Dialog().within(() => {
+            //             cy.get('.row > :nth-child(1) > div > .form-control').clear()
+            //             cy.get('.row > :nth-child(1) > div > .form-control').type('Demo Department')
+            //             cy.SubmitDialog()
+            //         })
+            //         cy.Toast().should('be.visible')
+            //         cy.Toast().should('have.text', 'Department Updated Successfully')
+            //         cy.reload()
+            //     })
 
-        // })
-        // describe('Delete Scenarios', () => {
-        //     it('Abort Delete', () => {
-        //         cy.get(':nth-child(1) > nb-card-body').within(() => {
-        //             cy.get(':nth-child(1) > .form-group > div > .input-full-width').type('Demo Department')
-        //             cy.Search()
-        //         })
-        //         cy.wait(500)
-        //         cy.Delete()
-        //         cy.Dialog().should('be.visible')
-        //         cy.get('div[class="col-12 mb-4"]').should('have.text', ' Are you sure you want to delete this department ? ')
-        //         cy.Abort()
-        //         cy.Dialog().should('not.exist')
-        //         cy.reload()
-        //     })
-        //     it('Delete Test Department', () => {
-        //         cy.get(':nth-child(1) > nb-card-body').within(() => {
-        //             cy.get(':nth-child(1) > .form-group > div > .input-full-width').type('Demo Department')
-        //             cy.Search()
-        //         })
-        //         cy.wait(500)
-        //         cy.Delete()
-        //         cy.Dialog().should('be.visible')
-        //         cy.get('div[class="col-12 mb-4"]').should('have.text', ' Are you sure you want to delete this department ? ')
-        //         cy.ConfirmDelete()
-        //         cy.get('.message').should('be.visible')
-        //         cy.get('.message').should('have.text', 'Unit Deleted Successfully')
-        //         cy.reload()
-        //     })
-        // })
+        })
+        describe('Delete Scenarios', () => {
+            it('Abort Delete', () => {
+                cy.get(':nth-child(1) > nb-card-body').within(() => {
+                    cy.get(':nth-child(1) > .form-group > div > .input-full-width').type('Demo Department')
+                    cy.Search()
+                })
+                cy.wait(500)
+                cy.Delete()
+                cy.Dialog().should('be.visible')
+                cy.get('div[class="col-12 mb-4"]').should('have.text', ' Are you sure you want to delete this department ? ')
+                cy.Abort()
+                cy.Dialog().should('not.exist')
+                cy.reload()
+            })
+            it('Delete Test Department  assigned to Department manager', () => {
+                cy.get(':nth-child(1) > nb-card-body').within(() => {
+                    cy.get(':nth-child(1) > .form-group > div > .input-full-width').type('tst')
+                    cy.Search()
+                })
+                cy.wait(500)
+                cy.Delete()
+                cy.Dialog().should('be.visible')
+                cy.get('div[class="col-12 mb-4"]').should('have.text', ' Are you sure you want to delete this department ? ')
+                cy.ConfirmDelete()
+                cy.get('.message').should('be.visible')
+                cy.get('.message').should('have.text', 'Sorry, this department is connected and used by users')
+                cy.reload()
+            })
+            it('Delete Test Department not assigned to Department manager', () => {
+                cy.get(':nth-child(1) > nb-card-body').within(() => {
+                    cy.get(':nth-child(1) > .form-group > div > .input-full-width').type('Demo Department')
+                    cy.Search()
+                })
+                cy.wait(500)
+                cy.Delete()
+                cy.Dialog().should('be.visible')
+                cy.get('div[class="col-12 mb-4"]').should('have.text', ' Are you sure you want to delete this department ? ')
+                cy.ConfirmDelete()
+                cy.get('.message').should('be.visible')
+                cy.get('.message').should('have.text', 'Department Deleted Successfully')
+                cy.reload()
+            })
+        })
     })
 })

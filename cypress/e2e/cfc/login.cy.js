@@ -1,5 +1,7 @@
+import {Login} from "../../Pages/Login";
+const login = new Login()
 beforeEach(()=>{
-  cy.visit('/auth/login?LOGIN=LOGIN')
+  login.navigateLoginPage()
 })
 describe('login page text',()=>{
   it('login logo',()=>{
@@ -27,29 +29,21 @@ describe('login page text',()=>{
  describe('login Scenarios', () => {
  
     it('login with no data', () => {
-      cy.get(':nth-child(2) > .row > .text-center > .btn').click()
-      cy.get(':nth-child(1) > .d-flex > .invalid-feedback > div').should('have.text','Username is required') 
-      cy.get(':nth-child(2) > .d-flex > .invalid-feedback > div').should('have.text','Password is required')   
+      login.loginBTN()
+      login.usernameRequired().should('have.text','Username is required') 
+      login.passwordRequired().should('have.text','Password is required')   
        
     })
     it('login with invalid data', () => {
-      cy.get(':nth-child(1) > .d-flex > .form-control').clear();
-      cy.get(':nth-child(1) > .d-flex > .form-control').type('testInvalid');
-      cy.get(':nth-child(2) > .d-flex > .form-control').clear();
-      cy.get(':nth-child(2) > .d-flex > .form-control').type('test');
-      cy.get(':nth-child(2) > .row > .text-center > .btn').click()
-      
-      cy.get('.message').should('have.text','Invalid username or password');
-
-
-      
+      login.Login('testInvalid','test')
+      cy.Toast().should('have.text','Invalid username or password');   
+    })
+    it('add space in username field and login', () => {
+      login.Login(' ','test')
+      cy.Toast().should('have.text','Please fill all mandatory data');   
     })
   it('login with valid data', () => {
-    cy.get(':nth-child(1) > .d-flex > .form-control').clear();
-    cy.get(':nth-child(1) > .d-flex > .form-control').type('MahmoudAliSuperAdmin');
-    cy.get(':nth-child(2) > .d-flex > .form-control').clear();
-    cy.get(':nth-child(2) > .d-flex > .form-control').type('Admin@VL');
-    cy.get(':nth-child(2) > .row > .text-center > .btn').click()
+    login.Login('MahmoudAliSuperAdmin','Admin@VL')
     cy.get('h2').should('have.text','DashBoard')
   })
 
